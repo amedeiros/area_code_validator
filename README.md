@@ -1,6 +1,6 @@
 # AreaCodeValidator
 
-TODO: Write a gem description
+AreaCodeValidator is a small gem that validates a phone numbers area code to a state.
 
 ## Installation
 
@@ -18,7 +18,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+State can be either abbreviation or full state name
+
+```ruby
+AreaCodeValidator.invalid?('123', 'FL') => true
+AreaCodeValidator.invalid?('813', 'FL') => false
+```
 
 ## Contributing
 

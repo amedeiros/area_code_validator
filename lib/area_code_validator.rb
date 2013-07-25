@@ -1,16 +1,20 @@
 require 'area_code_validator/version'
 require 'config/config'
-require  'extensions/area_code_invalid_validator' if defined?(Rails)
+# TODO: create validator
+# require  'extensions/area_code_invalid_validator' if defined?(Rails)
 
 module AreaCodeValidator
 
   def self.invalid?(area_code, area_code_state)
+    # Stop here and return true if either area_code or area_code_state are nil
+    return true if area_code.nil? or area_code_state.nil?
+
     # Upcase and scrub the area_code and area_code_state
     area_code        = area_code.to_s.upcase.gsub(/(\W|[A-Z]|_)*/, '')
     area_code_state  = area_code_state.to_s.upcase.gsub(/(\W|\d|_)*/, '')
 
     # Stop here and return true if the state does not exist
-    return true, "Undefined state: #{area_code_state}" if !Config::STATES.include?(area_code_state) and !Config::STATES.values.include?(area_code_state)
+    return true if !Config::STATES.include?(area_code_state) and !Config::STATES.values.include?(area_code_state)
 
     # Find the state abbreviation key we need to access our hash of arrays of area codes.
     key = get_abbreviation_key(area_code_state)

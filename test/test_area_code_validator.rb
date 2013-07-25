@@ -21,15 +21,13 @@ class AreaCodeValidatorTest < Test::Unit::TestCase
       end
 
       should 'return true for an undefined state abbreviation' do
-        invalid, error = AreaCodeValidator.invalid?('123', 'QQ')
+        invalid = AreaCodeValidator.invalid?('123', 'QQ')
         assert invalid
-        assert_equal 'Undefined state: QQ', error
       end
 
       should 'return true for an undefined full state name' do
-        invalid, error = AreaCodeValidator.invalid?('123', 'BadState')
+        invalid = AreaCodeValidator.invalid?('123', 'BadState')
         assert invalid
-        assert_equal 'Undefined state: BADSTATE', error
       end
 
       should 'handle a state abbreviation with non-word characters' do
@@ -45,6 +43,14 @@ class AreaCodeValidatorTest < Test::Unit::TestCase
       should 'handle a state area_code with non-word characters and word characters' do
         area_code = 'F / @!!()_hd -=8  %$#1  ?.,;3' # 813
         assert !AreaCodeValidator.invalid?(area_code, 'FL')
+      end
+
+      should 'return true for a nil area code' do
+        assert AreaCodeValidator.invalid?(area_code=nil, area_code_state='FL')
+      end
+
+      should 'return true for a nil area code state' do
+        assert AreaCodeValidator.invalid?(area_code='813', area_code_state=nil)
       end
     end
 

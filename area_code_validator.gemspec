@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AreaCodeValidator::VERSION
   spec.authors       = ['Andrew Medeiros']
   spec.email         = ['amedeiros0920@gmail.com']
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{AreaCodeValidator is a small gem that validates a phone numbers area code to a state.}
+  spec.summary       = %q{AreaCodeValidator is a small gem that validates a phone numbers area code to a state.}
   spec.homepage      = ''
   spec.license       = 'MIT'
 
