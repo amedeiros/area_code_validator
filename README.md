@@ -1,6 +1,6 @@
-# AreaCodeValidator
+# Area Code Validator
 
-AreaCodeValidator is a small gem that validates a phone numbers area code to a state.
+Area Code Validator is a small gem that validates a phone numbers area code to a state.
 
 ## Installation
 
