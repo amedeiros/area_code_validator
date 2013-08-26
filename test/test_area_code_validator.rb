@@ -31,12 +31,12 @@ class AreaCodeValidatorTest < Test::Unit::TestCase
       end
 
       should 'handle a state abbreviation with non-word characters' do
-        state = '12}3 F (** __)L @ 5674``' # FL                                                                                                      
+        state = '12}3 F (** __)L @ 5674``' # FL
         assert !AreaCodeValidator.invalid?(Helper::VALID_AREA_CODES['FL'].first, state)
       end
 
       should 'handle a full state name with non-word characters' do
-        state = '12_3 F (** )L o # R ^ I !!!! DA @   907' # FLORIDA                                                                                  
+        state = '12_3 F (** )L o # R ^ I !!!! DA @   907' # FLORIDA
         assert !AreaCodeValidator.invalid?(Helper::VALID_AREA_CODES['FL'].first, state)
       end
 
@@ -55,7 +55,7 @@ class AreaCodeValidatorTest < Test::Unit::TestCase
     end
 
     context '#get_abbreviation_key' do
-      AreaCodeValidator::Config::STATES.each do |state_abbreviation, state_name|
+      AreaCodeValidator::AreaCodeConfig::STATES.each do |state_abbreviation, state_name|
         should "return the correct state abbreviation #{state_abbreviation}" do
           assert_equal state_abbreviation, AreaCodeValidator.get_abbreviation_key(state_name)
         end
