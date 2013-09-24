@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/test_helper')
 
 class AreaCodeValidatorTest < Test::Unit::TestCase
   context AreaCodeValidator do
-    context '#invalid?' do
+    context '.invalid?' do
 
       Helper::VALID_AREA_CODES.each do |state, area_codes_array|
         area_codes_array.each_with_index do |area_code, index|
@@ -54,10 +54,28 @@ class AreaCodeValidatorTest < Test::Unit::TestCase
       end
     end
 
-    context '#get_abbreviation_key' do
+    context '.get_abbreviation_key' do
       AreaCodeValidator::AreaCodeConfig::STATES.each do |state_abbreviation, state_name|
         should "return the correct state abbreviation #{state_abbreviation}" do
           assert_equal state_abbreviation, AreaCodeValidator.get_abbreviation_key(state_name)
+        end
+      end
+    end
+
+    context '.invalid?' do
+      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+        area_codes_array.each_with_index do |area_code, index|
+          should "be a valid area code #{area_code} - #{state} index: #{index}" do
+            assert AreaCodeValidator.valid?(area_code, state), state.inspect + ' ' + area_code.inspect
+          end
+        end
+      end
+
+      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+        area_codes_array.each_with_index do |area_code, index|
+          should "not be a valid area_code #{area_code} - #{state} index: #{index}" do
+            refute AreaCodeValidator.valid?(area_code + '123', state), state.inspect + ' ' + area_code + '123'
+          end
         end
       end
     end

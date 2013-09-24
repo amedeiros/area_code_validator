@@ -2,6 +2,8 @@
 
 Area Code Validator is a small gem that validates a phone numbers area code to a state.
 
+Supports valid method from version >= 0.0.3
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,11 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
-State can be either abbreviation or full state name
+State can be either abbreviation or full state name.
 
 ```ruby
 AreaCodeValidator.invalid?('123', 'FL') => true
 AreaCodeValidator.invalid?('813', 'FL') => false
+
+AreaCodeValidator.valid?('123', 'FL') => false
+AreaCodeValidator.valid?('813', 'FL') => true
 ```
 
 ## Contributing
@@ -32,3 +37,7 @@ AreaCodeValidator.invalid?('813', 'FL') => false
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Future
+
+Include an active model validation.

@@ -38,4 +38,9 @@ module AreaCodeValidator
     end
     key
   end
+
+  # inverse of invalid?
+  def self.valid?(area_code, area_code_state)
+    !invalid?(area_code, area_code_state)
+  end
 end
