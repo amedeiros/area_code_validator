@@ -49,6 +49,6 @@ validates :work_phone, :florida_state,  area_code_invalid: true
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Future
+## Author
 
-Include an active model validation.
+Andrew Medeiros, amedeiros0920@gmail.com, @_AndrewMedeiros
