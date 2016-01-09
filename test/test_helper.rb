@@ -1,31 +1,31 @@
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../../config/environment.rb',  __FILE__)
-require 'rails/test_help'
+require 'rails'
+require 'active_record'
+require 'active_support'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'area_code_validator'
 require 'shoulda'
 
-Rails.backtrace_cleaner.remove_silencers!
+ActiveSupport.test_order = :sorted
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-# Load the database schema
-configuration = Pathname.new File.expand_path('../db', File.dirname(__FILE__))
-load configuration.join('schema.rb')
-
-# Load support files
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
-
-ActiveSupport.test_order = :sorted
-
-# Load fixtures from the engine
-if ActiveSupport::TestCase.method_defined?(:fixture_path=)
-  ActiveSupport::TestCase.fixture_path = File.expand_path('../fixtures', __FILE__)
+configuration = Pathname.new File.expand_path('configuration', File.dirname(__FILE__))
+models        = Pathname.new File.expand_path('models', File.dirname(__FILE__))
+Dir.glob(models.join('*.rb')).each do |file|
+  autoload File.basename(file).chomp('.rb').camelcase.intern, file
+end.each do |file|
+  require file
 end
 
-class Helper
+# Setup ActiveRecord
+ActiveRecord::Base.configurations = YAML.load_file configuration.join('database.yml')
+ActiveRecord::Base.establish_connection
+load configuration.join('schema.rb')
+
+class ActiveSupport::TestCase
   VALID_AREA_CODES = {
       'AL' => ['205', '251', '256', '334', '938'],
       'AK' => ['907'],

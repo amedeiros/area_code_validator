@@ -4,7 +4,7 @@ class AreaCodeValidatorTest < ActiveSupport::TestCase
   context AreaCodeValidator do
     context '.invalid?' do
 
-      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+      VALID_AREA_CODES.each do |state, area_codes_array|
         area_codes_array.each_with_index do |area_code, index|
           should "be a valid area code #{area_code} - #{state} index: #{index}" do
             assert !AreaCodeValidator.invalid?(area_code, state), state.inspect + ' ' + area_code.inspect
@@ -12,7 +12,7 @@ class AreaCodeValidatorTest < ActiveSupport::TestCase
         end
       end
 
-      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+      VALID_AREA_CODES.each do |state, area_codes_array|
         area_codes_array.each_with_index do |area_code, index|
           should "not be a valid area_code #{area_code} - #{state} index: #{index}" do
             assert AreaCodeValidator.invalid?(area_code + '123', state), state.inspect + ' ' + area_code + '123'
@@ -32,12 +32,12 @@ class AreaCodeValidatorTest < ActiveSupport::TestCase
 
       should 'handle a state abbreviation with non-word characters' do
         state = '12}3 F (** __)L @ 5674``' # FL
-        assert !AreaCodeValidator.invalid?(Helper::VALID_AREA_CODES['FL'].first, state)
+        assert !AreaCodeValidator.invalid?(VALID_AREA_CODES['FL'].first, state)
       end
 
       should 'handle a full state name with non-word characters' do
         state = '12_3 F (** )L o # R ^ I !!!! DA @   907' # FLORIDA
-        assert !AreaCodeValidator.invalid?(Helper::VALID_AREA_CODES['FL'].first, state)
+        assert !AreaCodeValidator.invalid?(VALID_AREA_CODES['FL'].first, state)
       end
 
       should 'handle a state area_code with non-word characters and word characters' do
@@ -63,7 +63,7 @@ class AreaCodeValidatorTest < ActiveSupport::TestCase
     end
 
     context '.invalid?' do
-      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+      VALID_AREA_CODES.each do |state, area_codes_array|
         area_codes_array.each_with_index do |area_code, index|
           should "be a valid area code #{area_code} - #{state} index: #{index}" do
             assert AreaCodeValidator.valid?(area_code, state), state.inspect + ' ' + area_code.inspect
@@ -71,7 +71,7 @@ class AreaCodeValidatorTest < ActiveSupport::TestCase
         end
       end
 
-      Helper::VALID_AREA_CODES.each do |state, area_codes_array|
+      VALID_AREA_CODES.each do |state, area_codes_array|
         area_codes_array.each_with_index do |area_code, index|
           should "not be a valid area_code #{area_code} - #{state} index: #{index}" do
             refute AreaCodeValidator.valid?(area_code + '123', state), state.inspect + ' ' + area_code + '123'
