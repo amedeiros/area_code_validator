@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/test_helper')
 
-class AreaCodeValidatorTest < Test::Unit::TestCase
+class AreaCodeValidatorTest < ActiveSupport::TestCase
   context AreaCodeValidator do
     context '.invalid?' do
 

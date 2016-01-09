@@ -51,4 +51,4 @@ validates :work_phone, :florida_state,  area_code_invalid: true
 
 ## Author
 
-Andrew Medeiros, amedeiros0920@gmail.com, @_AndrewMedeiros
+Andrew Medeiros, andrew@amedeiros.com, @_AndrewMedeiros

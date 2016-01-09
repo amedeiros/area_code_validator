@@ -3,14 +3,22 @@ ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../../config/environment.rb',  __FILE__)
 require 'rails/test_help'
-require 'test/unit'
+require 'minitest/autorun'
+require 'minitest/reporters'
 require 'area_code_validator'
 require 'shoulda'
 
 Rails.backtrace_cleaner.remove_silencers!
+Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
+# Load the database schema
+configuration = Pathname.new File.expand_path('../db', File.dirname(__FILE__))
+load configuration.join('schema.rb')
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+ActiveSupport.test_order = :sorted
 
 # Load fixtures from the engine
 if ActiveSupport::TestCase.method_defined?(:fixture_path=)
