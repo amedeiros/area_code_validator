@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amedeiros/area_code_validator.svg)](https://travis-ci.org/amedeiros/area_code_validator)
+
 # Area Code Validator
 
 Area Code Validator is a small gem that validates a phone numbers area code to a state.
@@ -51,4 +53,4 @@ validates :work_phone, :florida_state,  area_code_invalid: true
 
 ## Author
 
-Andrew Medeiros, amedeiros0920@gmail.com, @_AndrewMedeiros
+Andrew Medeiros, andrew@amedeiros.com, @_AndrewMedeiros
