@@ -54,3 +54,7 @@ validates :work_phone, :florida_state,  area_code_invalid: true
 ## Author
 
 Andrew Medeiros, andrew@amedeiros.com, @_AndrewMedeiros
+
+## Contributors
+
+[jtwhittington](https://github.com/jtwhittington)
