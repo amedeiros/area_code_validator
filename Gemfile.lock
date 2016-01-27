@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    area_code_validator (0.0.5)
+    area_code_validator (0.0.6)
 
 GEM
   remote: https://rubygems.org/
